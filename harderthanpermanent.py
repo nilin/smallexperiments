@@ -1,3 +1,5 @@
+# nilin
+
 import jax.numpy as jnp
 import permutations_simple as PS
 import jax.random as rnd
@@ -78,7 +80,7 @@ def printtensor(A):
 
 	
 def assertequal(a,b):
-	print('\n'+str(a)+' =?= '+str(b)+'\n\n')
+	print('\n'+str(a)+' =?= '+str(b))
 	assert(((a-b)**2)/(b**2)<.001)
 
 	
@@ -91,14 +93,9 @@ def testpermanent():
 def verify_reduction(M):
 
 	A=permanentreduction(M)
-
-	print('Assert equality of')
-	print('permanent of M,\nM=')
-	print(M)
-	print('\n\ngeneralized determinant of A,\nA=')
-	printtensor(A)
-
+	print('Assert permanent(M)==gendet(A(M)).')
 	assertequal(permanent(M),gendet(A))
+	print('test passed'+100*'-'+'\n\n')
 
 
 
@@ -106,14 +103,30 @@ def test(ns):
 	_,*keys=rnd.split(rnd.PRNGKey(0),1000)
 
 	for n,key in zip(ns,keys):
+		print('n='+str(n))
 		M=rnd.normal(key,(n,n))
 		verify_reduction(M)
 
 
-printtensor(inversiontensor(3))
+
+def displayreduction(n):
+	print('Example of reduction:')
+	M=rnd.normal(rnd.PRNGKey(0),(n,n))
+	print('M=')
+	print(M)
+	print('\nA(M)=')
+	printtensor(permanentreduction(M))
+
+
 
 if __name__=='__main__':
-	test([2,3,4,5])
+
+	print('\n\n\nGiven M we construct A(M) such that permanent(M)=gendet(A(M)).')
+	print('This shows that the generalized determinant is harder than the permanent.\n')
+	displayreduction(3)
+
+	input('\npress enter to test')
+	test([1,2,3,4,5])
 
 
 
