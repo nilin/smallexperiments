@@ -1,5 +1,14 @@
 # nilin
 
+
+
+
+# Given M we construct A(M) such that permanent(M)=gendet(A(M))
+# This shows that the generalized determinant is harder than the permanent.
+
+
+
+
 import jax.numpy as jnp
 import permutations_simple as PS
 import jax.random as rnd
@@ -111,6 +120,7 @@ def displayreduction(n):
 
 if __name__=='__main__':
 
+	print(100*'-')
 	print('\n\n\nGiven M we construct A(M) such that permanent(M)=gendet(A(M)).')
 	print('This shows that the generalized determinant is harder than the permanent.\n')
 	displayreduction(3)
