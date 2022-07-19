@@ -57,16 +57,6 @@ def permanentreduction(M):
 	return detreduction(M)*inversiontensor(n)
 
 
-#	One=jnp.ones((n,n))	
-#	MinusOne=jnp.concatenate([-jnp.ones((1,n)),jnp.ones((n-1,n))],axis=0)
-#	
-#	A=[jnp.array(n*[M])]
-#	for i in range(1,n):
-#		row=jnp.array(i*[MinusOne]+(n-i)*[One])
-#		A.append(row)
-#
-#	A=jnp.stack(A,axis=0)
-#	A=jnp.swapaxes(A,1,2)
 
 def printtensor(A):
 	n=A.shape[0]
